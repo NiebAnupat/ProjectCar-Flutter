@@ -1,24 +1,14 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'carPage.dart';
-import 'registerPage.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:reserv_car_app/pages/loginPage.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegistPage extends StatelessWidget {
+  const RegistPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    loginUser() {
-      if (kDebugMode) {
-        print("Login");
-      }
-      Navigator.push(
-          context, MaterialPageRoute(builder: (ctx) => const CarPage()));
-    }
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -58,7 +48,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       SizedBox(height: 8),
                       Text(
-                        "เข้าสู่ระบบจองรถยนต์สำหรับพนักงาน",
+                        "สมัครสมาชิกจองรถยนต์สำหรับพนักงาน",
                         style: GoogleFonts.notoSansThai(
                             fontSize: 18, color: Colors.white),
                       ),
@@ -85,11 +75,27 @@ class LoginPage extends StatelessWidget {
                       children: [
                         // Logo
                         Image.asset(
-                          'assets/images/carlogo.png',
+                          'assets/images/regist.png',
                           width: 100,
                           height: 100,
                         ),
                         const SizedBox(height: 40.0),
+
+                        // Username
+                        TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: Color.fromARGB(255, 240, 240, 240),
+                            hintText: 'ชื่อผู้ใช้',
+                            hintStyle: GoogleFonts.notoSansThai(),
+                            prefixIcon: Icon(Icons.person),
+                          ),
+                        ),
+                        const SizedBox(height: 15.0),
 
                         // ID Number
                         TextField(
@@ -109,6 +115,7 @@ class LoginPage extends StatelessWidget {
 
                         // Password
                         TextField(
+                          obscureText: true,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0),
@@ -126,9 +133,12 @@ class LoginPage extends StatelessWidget {
                         // Login Button
                         GFButton(
                           onPressed: () {
-                            loginUser();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (ctx) => const LoginPage()));
                           },
-                          text: "เข้าสู่ระบบ",
+                          text: "สมัครสมาชิก",
                           color: Color.fromARGB(255, 94, 171, 235),
                           textStyle: GoogleFonts.notoSansThai(
                               fontSize: 18,
@@ -139,31 +149,6 @@ class LoginPage extends StatelessWidget {
                           size: GFSize.LARGE,
                         ),
                         const SizedBox(height: 20.0),
-
-                        // Register
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("ยังไม่มีบัญชีผู้ใช้งาน ?",
-                                style: GoogleFonts.notoSansThai(
-                                    fontSize: 15, color: Colors.grey)),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (ctx) => const RegistPage()));
-                              },
-                              child: Text(
-                                "สมัครสมาชิก",
-                                style: GoogleFonts.notoSansThai(
-                                    fontSize: 18,
-                                    color: Color.fromARGB(255, 94, 171, 235),
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ],
-                        ),
                       ],
                     ),
                   ),

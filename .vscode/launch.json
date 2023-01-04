@@ -6,10 +6,10 @@
     "configurations": [
         
         {
-            "name": "Flutter (lib\\pages\\main.dart)",
+            "name": "Flutter (lib\\main.dart)",
             "type": "dart",
             "request": "launch",
-            "program": "lib\\pages\\main.dart"
+            "program": "lib\\main.dart"
         },
     ]
 }
