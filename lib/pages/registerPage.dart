@@ -92,7 +92,6 @@ class RegistPage extends StatelessWidget {
                             fillColor: Color.fromARGB(255, 240, 240, 240),
                             hintText: 'ชื่อผู้ใช้',
                             hintStyle: GoogleFonts.notoSansThai(),
-                            prefixIcon: Icon(Icons.person),
                           ),
                         ),
                         const SizedBox(height: 15.0),
@@ -108,7 +107,6 @@ class RegistPage extends StatelessWidget {
                             fillColor: Color.fromARGB(255, 240, 240, 240),
                             hintText: 'รหัสพนักงาน',
                             hintStyle: GoogleFonts.notoSansThai(),
-                            prefixIcon: Icon(Icons.person),
                           ),
                         ),
                         const SizedBox(height: 15.0),
@@ -125,7 +123,6 @@ class RegistPage extends StatelessWidget {
                             fillColor: Color.fromARGB(255, 240, 240, 240),
                             hintText: 'รหัสผ่าน',
                             hintStyle: GoogleFonts.notoSansThai(),
-                            prefixIcon: Icon(Icons.lock),
                           ),
                         ),
                         const SizedBox(height: 30.0),
@@ -138,7 +135,7 @@ class RegistPage extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (ctx) => const LoginPage()));
                           },
-                          text: "สมัครสมาชิก",
+                          text: "ยืนยันการสมัคร",
                           color: Color.fromARGB(255, 94, 171, 235),
                           textStyle: GoogleFonts.notoSansThai(
                               fontSize: 18,

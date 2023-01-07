@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:getwidget/getwidget.dart';
 
-class CarPage extends StatelessWidget {
-  const CarPage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

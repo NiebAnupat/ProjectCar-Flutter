@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'carPage.dart';
+import 'package:reserv_car_app/pages/bottomBar.dart';
 import 'registerPage.dart';
 
 class LoginPage extends StatelessWidget {
@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
         print("Login");
       }
       Navigator.push(
-          context, MaterialPageRoute(builder: (ctx) => const CarPage()));
+          context, MaterialPageRoute(builder: (ctx) => const BottomBar()));
     }
 
     return Scaffold(
@@ -144,7 +144,7 @@ class LoginPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("ยังไม่มีบัญชีผู้ใช้งาน ?",
+                            Text("ยังไม่มีบัญชีสำหรับพนักงาน ?",
                                 style: GoogleFonts.notoSansThai(
                                     fontSize: 15, color: Colors.grey)),
                             TextButton(
@@ -155,7 +155,7 @@ class LoginPage extends StatelessWidget {
                                         builder: (ctx) => const RegistPage()));
                               },
                               child: Text(
-                                "สมัครสมาชิก",
+                                "สมัคร",
                                 style: GoogleFonts.notoSansThai(
                                     fontSize: 18,
                                     color: Color.fromARGB(255, 94, 171, 235),
