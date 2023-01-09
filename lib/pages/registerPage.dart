@@ -73,6 +73,8 @@ class RegistPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        // Back button
+
                         // Logo
                         Image.asset(
                           'assets/images/regist.png',
