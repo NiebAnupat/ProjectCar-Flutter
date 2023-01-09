@@ -74,6 +74,23 @@ class RegistPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // Back button
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            GFIconButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              icon: const Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.blue,
+                                size: 25,
+                              ),
+                              type: GFButtonType.transparent,
+                            ),
+                          ],
+                        ),
 
                         // Logo
                         Image.asset(

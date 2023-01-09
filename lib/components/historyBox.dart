@@ -61,7 +61,7 @@ class HistoryBox extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 25,
+              height: 30,
             ),
             Center(
               child: Text(
@@ -95,13 +95,6 @@ class HistoryBox extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'ยี่ห้อรถ : ',
-                    style: GoogleFonts.notoSansThai(fontSize: 16),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  Text(
                     'ทะเบียนรถ : ',
                     style: GoogleFonts.notoSansThai(fontSize: 16),
                   ),
@@ -109,7 +102,7 @@ class HistoryBox extends StatelessWidget {
                     height: 8.0,
                   ),
                   Text(
-                    'ชื่อผู้จอง : ',
+                    'ยี่ห้อรถ : ',
                     style: GoogleFonts.notoSansThai(fontSize: 16),
                   ),
                   SizedBox(
@@ -117,6 +110,13 @@ class HistoryBox extends StatelessWidget {
                   ),
                   Text(
                     'วันที่จอง : ',
+                    style: GoogleFonts.notoSansThai(fontSize: 16),
+                  ),
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  Text(
+                    'ชื่อผู้จอง : ',
                     style: GoogleFonts.notoSansThai(fontSize: 16),
                   ),
                 ],
