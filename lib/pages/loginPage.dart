@@ -5,12 +5,17 @@ import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:reserv_car_app/pages/bottomBar.dart';
 import 'registerPage.dart';
+import 'package:get/get.dart';
+import '../getX/user/logic.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final userlogic = Get.put(Userlogic());
 
   @override
   Widget build(BuildContext context) {
+    final idController = TextEditingController();
+    final passwordController = TextEditingController();
+
     loginUser() {
       if (kDebugMode) {
         print("Login");

@@ -152,7 +152,7 @@ class RegistPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (ctx) => const LoginPage()));
+                                    builder: (ctx) => LoginPage()));
                           },
                           text: "ยืนยันการสมัคร",
                           color: Color.fromARGB(255, 94, 171, 235),

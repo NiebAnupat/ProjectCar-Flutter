@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:getwidget/getwidget.dart';
+import '../components/carBox.dart';
+import '../models/Cars.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20),
+                  const EdgeInsets.symmetric(horizontal: 35.0, vertical: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -50,9 +52,15 @@ class _HomePageState extends State<HomePage> {
                       }
                     },
                   ),
-
-                  // Car list
                 ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return CarBox();
+                },
               ),
             ),
           ],

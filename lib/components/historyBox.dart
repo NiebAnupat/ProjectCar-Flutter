@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getwidget/components/card/gf_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,13 +25,6 @@ class HistoryBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(1.5),
         child: ListTile(
-          //Image
-          leading: Image.network(
-            'https://picsum.photos/200',
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
-          ),
           title:
               Text("ทะเบียนรถ", style: GoogleFonts.notoSansThai(fontSize: 18)),
           subtitle:
