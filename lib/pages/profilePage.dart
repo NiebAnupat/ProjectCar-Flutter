@@ -17,6 +17,7 @@ class ProfilePage extends StatelessWidget {
             height: 200,
             width: double.infinity,
             decoration: BoxDecoration(
+              color: Colors.blue[100],
               image: DecorationImage(
                 image: NetworkImage(
                     'https://cdn.pixabay.com/photo/2016/11/22/19/33/conifers-1850227_960_720.jpg'),

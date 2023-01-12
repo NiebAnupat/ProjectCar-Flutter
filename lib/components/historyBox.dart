@@ -72,6 +72,9 @@ class HistoryBox extends StatelessWidget {
               child: Container(
                 width: 350,
                 margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image(
