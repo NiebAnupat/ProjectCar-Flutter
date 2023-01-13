@@ -41,7 +41,7 @@ class ProfilePage extends StatelessWidget {
                     child: CircleAvatar(
                         child: ClipOval(
                       child: Image.network(
-                        'https://cdn.pixabay.com/photo/2017/04/01/21/06/portrait-2194457_960_720.jpg',
+                        'https://api.multiavatar.com/39169f35a316b9e1ee.png',
                         height: 100,
                         width: 100,
                         fit: BoxFit.cover,

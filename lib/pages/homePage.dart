@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:getwidget/getwidget.dart';
 import '../components/carBox.dart';
-import '../models/Cars.dart';
+import '../models/Car.dart';
+import '../getX/car/logic.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   DateTime _dateTime = DateTime.now();
+  final carLogic = Get.put(Carlogic());
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +58,14 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return CarBox();
+              child: GetX<Carlogic>(
+                builder: (carLogic) {
+                  return ListView.builder(
+                    itemCount: carLogic.cars.length,
+                    itemBuilder: (context, index) {
+                      return CarBox(car: carLogic.cars[index]);
+                    },
+                  );
                 },
               ),
             ),

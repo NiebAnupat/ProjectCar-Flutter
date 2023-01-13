@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:reserv_car_app/models/Cars.dart';
+import 'package:reserv_car_app/models/Car.dart';
 
 class CarBox extends StatelessWidget {
-  const CarBox({super.key});
+  final Car car;
+  CarBox({required this.car});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CarBox extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: NetworkImage(
-            'https://cdn.pixabay.com/photo/2012/05/29/00/43/car-49278__340.jpg',
+            car.image,
           ),
           fit: BoxFit.cover,
         ),
@@ -33,9 +34,8 @@ class CarBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(1.5),
         child: ListTile(
-          title: Text("ชื่อรถ", style: GoogleFonts.notoSansThai(fontSize: 18)),
-          subtitle:
-              Text("ทะเบียนรถ", style: GoogleFonts.notoSansThai(fontSize: 15)),
+          title: Text(car.name, style: GoogleFonts.notoSansThai(fontSize: 18)),
+          subtitle: Text(car.id, style: GoogleFonts.notoSansThai(fontSize: 15)),
 
           // Tap to input detail
           onTap: () {
@@ -57,12 +57,12 @@ class CarBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'ทะเบียนรถ : ',
+                'ทะเบียนรถ : ${car.id}',
                 style: GoogleFonts.notoSansThai(fontSize: 16),
               ),
               SizedBox(height: 5),
               Text(
-                'ชื่อรถ     : ',
+                'ชื่อรถ     :  ${car.name}',
                 style: GoogleFonts.notoSansThai(fontSize: 16),
               ),
               SizedBox(height: 5),

@@ -2,12 +2,17 @@ import 'package:get/get.dart';
 
 class Userlogic extends GetxController {
   final id = 0.obs;
-  final name = 'name'.obs;
-  final image = 'image'.obs;
+  final password = ''.obs;
+  final name = ''.obs;
+  final image = ''.obs;
+
+  String get getImage => image.value == ''
+      ? 'https://api.multiavatar.com/39169f35a316b9e1ee.png'
+      : image.value;
 }
 
 class EmployeeModel {
-  EmployeeModel({id, name, image});
+  EmployeeModel({id, password, name, image});
 
   final userlogic = Userlogic();
 
@@ -17,20 +22,25 @@ class EmployeeModel {
   get id => userlogic.id.value;
   set id(value) => userlogic.id.value = value;
 
+  get password => userlogic.password.value;
+  set password(value) => userlogic.password.value = value;
+
   get image => userlogic.image.value;
   set image(value) => userlogic.image.value = value;
 
   EmployeeModel.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.name = json['name'];
-    this.image = json['image'];
+    id = json['id'];
+    password = json['password'];
+    name = json['name'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['password'] = password;
+    data['name'] = name;
+    data['image'] = image;
     return data;
   }
 }
