@@ -25,8 +25,7 @@ class HistoryBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(1.5),
         child: ListTile(
-          title:
-              Text("ทะเบียนรถ", style: GoogleFonts.notoSansThai(fontSize: 18)),
+          title: Text("ชิ่อรถ", style: GoogleFonts.notoSansThai(fontSize: 18)),
           subtitle:
               Text("วันที่", style: GoogleFonts.notoSansThai(fontSize: 15)),
 
@@ -99,7 +98,7 @@ class HistoryBox extends StatelessWidget {
                     height: 8.0,
                   ),
                   Text(
-                    'ยี่ห้อรถ : ',
+                    'ชื่อรถ     : ',
                     style: GoogleFonts.notoSansThai(fontSize: 16),
                   ),
                   SizedBox(

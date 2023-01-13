@@ -33,7 +33,7 @@ class CarBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(1.5),
         child: ListTile(
-          title: Text("ยี่ห้อ", style: GoogleFonts.notoSansThai(fontSize: 18)),
+          title: Text("ชื่อรถ", style: GoogleFonts.notoSansThai(fontSize: 18)),
           subtitle:
               Text("ทะเบียนรถ", style: GoogleFonts.notoSansThai(fontSize: 15)),
 
@@ -62,7 +62,7 @@ class CarBox extends StatelessWidget {
               ),
               SizedBox(height: 5),
               Text(
-                'ยี่ห้อรถ   : ',
+                'ชื่อรถ     : ',
                 style: GoogleFonts.notoSansThai(fontSize: 16),
               ),
               SizedBox(height: 5),
