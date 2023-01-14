@@ -12,7 +12,6 @@ class Carlogic extends GetxController {
 
     isLoading.value = true;
 
-    print('carlogic onInit');
     // fetch car from carRepository
     cars.value = await carRepository.fetchCar() ?? <Car>[];
 

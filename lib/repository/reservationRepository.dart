@@ -6,6 +6,6 @@ class reservationRepository {
       reservationProvider.fetchReservation();
   Future<List<Reservation>?> fetchreservationByCarId(String id) =>
       reservationProvider.fetchReservationByCarId(id);
-  Future<Reservation?> addreservation(Reservation reservation) =>
-      reservationProvider.addreservation(reservation);
+  static Future<Reservation?> createReservation(Reservation reservation) =>
+      reservationProvider.addReservation(reservation);
 }

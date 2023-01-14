@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 class Userlogic extends GetxController {
-  final id = 0.obs;
+  final id = 'ทดสอบ รหัสผ่าน'.obs;
   final password = ''.obs;
-  final name = ''.obs;
+  final name = 'ทดสอบ ผู้ใช้งาน'.obs;
   final image = ''.obs;
 
   String get getImage => image.value == ''

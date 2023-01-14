@@ -17,11 +17,8 @@ class LoginPage extends StatelessWidget {
     final passwordController = TextEditingController();
 
     loginUser() {
-      if (kDebugMode) {
-        print("Login");
-      }
-      Navigator.push(
-          context, MaterialPageRoute(builder: (ctx) => const BottomBar()));
+      // get navigation to homePage
+      Get.offAll(const BottomBar());
     }
 
     return Scaffold(
@@ -31,7 +28,7 @@ class LoginPage extends StatelessWidget {
             maxHeight: MediaQuery.of(context).size.height,
             maxWidth: MediaQuery.of(context).size.width,
           ),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 36, 110, 175),
@@ -61,7 +58,7 @@ class LoginPage extends StatelessWidget {
                             color: Colors.white,
                             fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
                         "เข้าสู่ระบบจองรถยนต์สำหรับพนักงาน",
                         style: GoogleFonts.notoSansThai(
@@ -75,7 +72,7 @@ class LoginPage extends StatelessWidget {
                 flex: 5,
                 child: Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
@@ -104,10 +101,10 @@ class LoginPage extends StatelessWidget {
                               borderSide: BorderSide.none,
                             ),
                             filled: true,
-                            fillColor: Color.fromARGB(255, 240, 240, 240),
+                            fillColor: const Color.fromARGB(255, 240, 240, 240),
                             hintText: 'รหัสพนักงาน',
                             hintStyle: GoogleFonts.notoSansThai(),
-                            prefixIcon: Icon(Icons.person),
+                            prefixIcon: const Icon(Icons.person),
                           ),
                         ),
                         const SizedBox(height: 15.0),
@@ -120,10 +117,10 @@ class LoginPage extends StatelessWidget {
                               borderSide: BorderSide.none,
                             ),
                             filled: true,
-                            fillColor: Color.fromARGB(255, 240, 240, 240),
+                            fillColor: const Color.fromARGB(255, 240, 240, 240),
                             hintText: 'รหัสผ่าน',
                             hintStyle: GoogleFonts.notoSansThai(),
-                            prefixIcon: Icon(Icons.lock),
+                            prefixIcon: const Icon(Icons.lock),
                           ),
                         ),
                         const SizedBox(height: 30.0),
@@ -134,7 +131,7 @@ class LoginPage extends StatelessWidget {
                             loginUser();
                           },
                           text: "เข้าสู่ระบบ",
-                          color: Color.fromARGB(255, 94, 171, 235),
+                          color: const Color.fromARGB(255, 94, 171, 235),
                           textStyle: GoogleFonts.notoSansThai(
                               fontSize: 18,
                               color: Colors.white,
@@ -163,7 +160,7 @@ class LoginPage extends StatelessWidget {
                                 "สมัคร",
                                 style: GoogleFonts.notoSansThai(
                                     fontSize: 18,
-                                    color: Color.fromARGB(255, 94, 171, 235),
+                                    color: const Color.fromARGB(255, 94, 171, 235),
                                     fontWeight: FontWeight.w400),
                               ),
                             ),

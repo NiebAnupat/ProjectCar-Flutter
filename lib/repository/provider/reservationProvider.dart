@@ -74,17 +74,19 @@ class reservationProvider {
     }
   }
 
-  static Future<Reservation?> addreservation(Reservation reservation) async {
+  static Future<Reservation> addReservation(Reservation reservation) async {
     try {
+      print(reservation.toJson());
+
       // fetch data from google sheet
       final reservationSheet = await googleSheetProvider.reservationSheet;
-      var allRows = await reservationSheet.values.map.allRows();
-      if (allRows == null) {
-        return null;
-      }
-      var reservations = allRows.map((e) => Reservation.fromJson(e)).toList();
-      var lastId = reservations.last.id;
-      reservation.id = (int.parse(lastId) + 1).toString();
+      // var allRows = await reservationSheet.values.map.allRows();
+      // if (allRows == null) {
+      //   return null;
+      // }
+      // var reservations = allRows.map((e) => Reservation.fromJson(e)).toList();
+      // var lastId = reservations.last.id;
+      // reservation.id = (int.parse(lastId) + 1).toString();
       await reservationSheet.values.map.appendRow(reservation.toJson());
       return reservation;
     } catch (e) {

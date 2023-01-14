@@ -1,5 +1,5 @@
 class Reservation {
-  late final String id;
+  final String id;
   final String date;
   final String carId;
   final String employeeId;
@@ -9,6 +9,12 @@ class Reservation {
       required this.date,
       required this.carId,
       required this.employeeId});
+
+  static makeReservationId() {
+    var now = DateTime.now();
+    var id = now.millisecondsSinceEpoch.toString();
+    return id;
+  }
 
   Reservation.fromJson(Map<String, dynamic> json)
       : id = json['id'],

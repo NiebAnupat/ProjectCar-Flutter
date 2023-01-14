@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:getwidget/getwidget.dart';
 import '../components/carBox.dart';
 import '../models/Car.dart';
+import 'package:intl/intl.dart';
 import '../getX/car/logic.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,8 +15,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  DateTime _dateTime = DateTime.now();
   final carLogic = Get.put(Carlogic());
+  var date = DateTime.now();
+  var formatter = DateFormat('dd / MM / yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +32,26 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'วันจองรถ   ${_dateTime.day} - ${_dateTime.month} - ${_dateTime.year}',
+                    'วันจองรถ   ${formatter.format(date)}',
                     style: GoogleFonts.notoSansThai(
                       fontSize: 18,
                       color: Colors.black,
                     ),
                   ),
                   GFIconButton(
-                    icon: Icon(Icons.calendar_today),
+                    icon: const Icon(Icons.calendar_today),
                     color: Colors.black,
                     type: GFButtonType.transparent,
                     onPressed: () async {
-                      DateTime? _newDate = await showDatePicker(
+                      DateTime? newDate = await showDatePicker(
                         context: context,
-                        initialDate: _dateTime,
+                        initialDate: date,
                         firstDate: DateTime(2015),
                         lastDate: DateTime(2025),
                       );
-                      if (_newDate != null) {
+                      if (newDate != null) {
                         setState(() {
-                          _dateTime = _newDate;
+                          date = newDate;
                         });
                       }
                     },
@@ -60,12 +62,21 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: GetX<Carlogic>(
                 builder: (carLogic) {
-                  return ListView.builder(
-                    itemCount: carLogic.cars.length,
-                    itemBuilder: (context, index) {
-                      return CarBox(car: carLogic.cars[index]);
-                    },
-                  );
+                  if (carLogic.isLoading.value) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return ListView.builder(
+                      itemCount: carLogic.cars.length,
+                      itemBuilder: (context, index) {
+                        return CarBox(
+                          car: carLogic.cars[index],
+                          date: date,
+                        );
+                      },
+                    );
+                  }
                 },
               ),
             ),

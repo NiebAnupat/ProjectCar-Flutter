@@ -26,6 +26,7 @@ class googleSheetProvider {
     final spreadsheet = await _gsheets.spreadsheet(_spreadsheetId);
     _employeeSheet = spreadsheet.worksheetByTitle('employee');
     _carSheet = spreadsheet.worksheetByTitle('car');
+    _reservationSheet = spreadsheet.worksheetByTitle('reservation');
   }
 
   static Future<Worksheet> get employeeSheet async {

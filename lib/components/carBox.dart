@@ -2,11 +2,60 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:intl/intl.dart';
 import 'package:reserv_car_app/models/Car.dart';
+import 'package:reserv_car_app/models/Reservation.dart';
+import 'package:reserv_car_app/repository/reservationRepository.dart';
+
+import '../getX/reservation/logic.dart';
+import '../getX/user/logic.dart';
 
 class CarBox extends StatelessWidget {
   final Car car;
-  CarBox({required this.car});
+  final DateTime date;
+  var formatter = DateFormat('dd / MM / yyyy');
+
+  CarBox({required this.car, required this.date});
+
+  final userLogic = Get.put(Userlogic());
+  final reservationLogic = Get.put(ReservationLogic());
+
+  submitReservation() async {
+    try {
+      final dateFormatted = DateFormat('dd/MM/yyyy').format(date);
+      final newReservation = Reservation(
+          id: Reservation.makeReservationId(),
+          date: dateFormatted,
+          carId: car.id,
+          employeeId: userLogic.id.value);
+
+      await reservationRepository.createReservation(newReservation);
+
+      // add new reservation to reservation list
+      reservationLogic.reservations.add(newReservation);
+
+      Get.back();
+      Get.snackbar(
+        'ทำการจองรถสำเร็จ',
+        'การจองรถเลขทะเบียน ${car.id} วันที่ $dateFormatted สำเร็จ หมายเลขการจองของคุณคือ ${newReservation.id}',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+        margin: const EdgeInsets.only(bottom: 70, left: 10, right: 10),
+      );
+    } catch (e) {
+      Get.back();
+      // getX snack-bar error
+      Get.snackbar(
+        'เกิดข้อผิดพลาด',
+        'กรุณาลองใหม่อีกครั้ง',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        margin: const EdgeInsets.only(bottom: 70, left: 10, right: 10),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,30 +101,36 @@ class CarBox extends StatelessWidget {
           title: Center(
               child: Text("ยืนยันการจองรถ",
                   style: GoogleFonts.notoSansThai(fontSize: 18))),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'ทะเบียนรถ : ${car.id}',
-                style: GoogleFonts.notoSansThai(fontSize: 16),
-              ),
-              SizedBox(height: 5),
-              Text(
-                'ชื่อรถ     :  ${car.name}',
-                style: GoogleFonts.notoSansThai(fontSize: 16),
-              ),
-              SizedBox(height: 5),
-              Text(
-                'วันที่จอง : ',
-                style: GoogleFonts.notoSansThai(fontSize: 16),
-              ),
-              SizedBox(height: 5),
-              Text(
-                'ชื่อผู้จอง : ',
-                style: GoogleFonts.notoSansThai(fontSize: 16),
-              ),
-            ],
+          content: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Wrap(
+              runSpacing: 10,
+              children: [
+                Text(
+                  'ทะเบียนรถ : ${car.id}',
+                  style: GoogleFonts.notoSansThai(fontSize: 16),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'ชื่อรถ     :  ${car.name}',
+                  style: GoogleFonts.notoSansThai(fontSize: 16),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'วันที่จอง :  ${formatter.format(date)}',
+                  style: GoogleFonts.notoSansThai(fontSize: 16),
+                ),
+                SizedBox(height: 5),
+                GetX<Userlogic>(
+                  builder: (userLogic) {
+                    return Text(
+                      'ชื่อผู้จอง :  ${userLogic.name.value}',
+                      style: GoogleFonts.notoSansThai(fontSize: 16),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
@@ -83,7 +138,7 @@ class CarBox extends StatelessWidget {
               child: Text("ยกเลิก"),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: submitReservation,
               child: Text("ยืนยัน"),
             ),
           ],
