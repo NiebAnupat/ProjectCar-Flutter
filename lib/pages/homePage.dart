@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
                         setState(() {
                           date = newDate;
                         });
+                        carLogic.loadCarByDate(newDate);
                       }
                     },
                   ),
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> {
               child: GetX<Carlogic>(
                 builder: (carLogic) {
                   if (carLogic.isLoading.value) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else {

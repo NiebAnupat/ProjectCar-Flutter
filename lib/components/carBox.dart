@@ -7,6 +7,7 @@ import 'package:reserv_car_app/models/Car.dart';
 import 'package:reserv_car_app/models/Reservation.dart';
 import 'package:reserv_car_app/repository/reservationRepository.dart';
 
+import '../getX/car/logic.dart';
 import '../getX/reservation/logic.dart';
 import '../getX/user/logic.dart';
 
@@ -18,6 +19,7 @@ class CarBox extends StatelessWidget {
   CarBox({required this.car, required this.date});
 
   final userLogic = Get.put(Userlogic());
+  final carLogic = Get.put(Carlogic());
   final reservationLogic = Get.put(ReservationLogic());
 
   submitReservation() async {
@@ -43,6 +45,8 @@ class CarBox extends StatelessWidget {
         colorText: Colors.white,
         margin: const EdgeInsets.only(bottom: 70, left: 10, right: 10),
       );
+
+      carLogic.loadCarByDate(date);
     } catch (e) {
       Get.back();
       // getX snack-bar error

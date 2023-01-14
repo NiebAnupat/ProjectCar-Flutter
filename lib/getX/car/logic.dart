@@ -12,9 +12,16 @@ class Carlogic extends GetxController {
 
     isLoading.value = true;
 
-    // fetch car from carRepository
-    cars.value = await carRepository.fetchCar() ?? <Car>[];
+    loadCarByDate(DateTime.now());
 
+    isLoading.value = false;
+  }
+
+  // load car by date
+  Future<void> loadCarByDate(DateTime date) async {
+    isLoading.value = true;
+    // fetch car from carRepository
+    cars.value = await carRepository.getCarNotReservedByDate(date) ?? <Car>[];
     isLoading.value = false;
   }
 }

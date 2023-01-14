@@ -9,4 +9,12 @@ class carRepository {
       rethrow;
     }
   }
+
+  static Future<List<Car>?> getCarNotReservedByDate(DateTime date) async {
+    try {
+      return await carProvider.getCarNotReservedByDate(date);
+    } catch (e, s) {
+      rethrow;
+    }
+  }
 }

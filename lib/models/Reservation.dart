@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Reservation {
   final String id;
   final String date;
@@ -16,11 +18,19 @@ class Reservation {
     return id;
   }
 
-  Reservation.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        date = json['date'],
-        carId = json['car_id'],
-        employeeId = json['employee_id'];
+  static Reservation fromJson(Map<String, dynamic> json) {
+    var formatter = DateFormat('dd/MM/yyyy');
+    var date = DateTime.fromMillisecondsSinceEpoch(
+        (int.parse(json['date']) - 25569) * 86400000,
+        isUtc: true);
+
+    return Reservation(
+      id: json['id'],
+      date: formatter.format(date),
+      carId: json['car_id'],
+      employeeId: json['employee_id'],
+    );
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
