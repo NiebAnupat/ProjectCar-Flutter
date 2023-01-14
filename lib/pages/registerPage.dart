@@ -16,7 +16,7 @@ class RegistPage extends StatelessWidget {
             maxHeight: MediaQuery.of(context).size.height,
             maxWidth: MediaQuery.of(context).size.width,
           ),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Color.fromARGB(255, 36, 110, 175),

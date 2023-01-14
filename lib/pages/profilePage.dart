@@ -48,6 +48,11 @@ class ProfilePage extends StatelessWidget {
                             height: 100,
                             width: 100,
                             fit: BoxFit.cover,
+                            errorBuilder: (BuildContext context,
+                                Object exception, StackTrace? stackTrace) {
+                              return Image.network(
+                                  'https://api.multiavatar.com/39169f35a316b9e1ee.png');
+                            },
                           ),
                         ))),
                     const SizedBox(height: 10),
@@ -102,7 +107,7 @@ class ProfilePage extends StatelessWidget {
                     color: Color.fromARGB(255, 72, 167, 245),
                   ),
                   onTap: () {
-                    Get.offAll(() => LoginPage());
+                    userLogic.clearUser();
                   },
                 ),
               ],

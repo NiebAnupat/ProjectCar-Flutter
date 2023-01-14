@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:reserv_car_app/pages/bottomBar.dart';
+import '../repository/employeeRepository.dart';
 import 'registerPage.dart';
 import 'package:get/get.dart';
 import '../getX/user/logic.dart';
@@ -16,9 +17,20 @@ class LoginPage extends StatelessWidget {
     final idController = TextEditingController();
     final passwordController = TextEditingController();
 
-    loginUser() {
-      // get navigation to homePage
-      Get.offAll(const BottomBar());
+    loginUser() async {
+      try {
+        final user = await EmployeeRepository.login(
+            idController.text, passwordController.text);
+        await userlogic.saveUser(user.id, user.password, user.name, user.image);
+        Get.offAll(const BottomBar());
+      } catch (e) {
+        Get.snackbar(
+            'เข้าสู่ระบบไม่สำเร็จ', 'กรุณาตรวจสอบรหัสพนักงานและรหัสผ่าน',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10));
+      }
     }
 
     return Scaffold(
@@ -95,6 +107,8 @@ class LoginPage extends StatelessWidget {
 
                         // ID Number
                         TextField(
+                          onSubmitted: (value) => loginUser(),
+                          controller: idController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0),
@@ -111,6 +125,8 @@ class LoginPage extends StatelessWidget {
 
                         // Password
                         TextField(
+                          onSubmitted: (value) => loginUser(),
+                          controller: passwordController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0),
@@ -160,7 +176,8 @@ class LoginPage extends StatelessWidget {
                                 "สมัคร",
                                 style: GoogleFonts.notoSansThai(
                                     fontSize: 18,
-                                    color: const Color.fromARGB(255, 94, 171, 235),
+                                    color:
+                                        const Color.fromARGB(255, 94, 171, 235),
                                     fontWeight: FontWeight.w400),
                               ),
                             ),

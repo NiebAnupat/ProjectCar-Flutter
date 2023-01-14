@@ -41,6 +41,7 @@ dependencies:
   get: 4.6.5
   gsheets: ^0.4.2
   intl: ^0.18.0
+  shared_preferences: ^2.0.0-nullsafety
 
 flutter_icons:
   android: true
