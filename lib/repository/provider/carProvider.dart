@@ -1,10 +1,17 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:reserv_car_app/models/Car.dart';
+import '../../getX/car/logic.dart';
 import '../../models/Reservation.dart';
 import 'googleSheetProvider.dart';
 import 'dart:convert';
 
 class carProvider {
+  final carLogic = Get.put(Carlogic());
+
   static Future<List<Car>?> fetchCar() async {
     try {
       // fetch data from google sheet

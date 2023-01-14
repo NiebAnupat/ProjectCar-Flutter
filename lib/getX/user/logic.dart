@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:reserv_car_app/pages/bottomBar.dart';
 import 'package:reserv_car_app/pages/loginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,16 +40,24 @@ class Userlogic extends GetxController {
   // load user from shared preferences
   Future<void> loadUser() async {
     try {
-      this.isLoading.value = true;
       final prefs = await SharedPreferences.getInstance();
       final id = prefs.getString('id');
       if (id == null) return;
+
+      Get.dialog(
+        const Center(
+          child: CircularProgressIndicator(),
+        ),
+        barrierDismissible: false,
+      );
+
       final user = await EmployeeRepository.FetchCurrentUserById(id);
       if (user != null) {
         this.id.value = user.id;
         this.password.value = user.password;
         this.name.value = user.name;
         this.image.value = user.image;
+        Get.back();
         Get.offAll(const BottomBar());
       }
     } catch (e) {
@@ -58,24 +68,69 @@ class Userlogic extends GetxController {
   }
 
   Future<void> clearUser() async {
-    // clear data from shared preferences
-    final prefs = await SharedPreferences.getInstance();
-    prefs.remove('id');
-    prefs.remove('password');
-    prefs.remove('name');
-    prefs.remove('image');
-    // update data to userlogic
-    this.id.value = '';
-    this.password.value = '';
-    this.name.value = '';
-    this.image.value = '';
+    // confirm clear user
+    final confirm = await Get.defaultDialog(
+      title: 'ยืนยัน',
+      titlePadding: const EdgeInsets.all(10),
+      titleStyle: GoogleFonts.notoSansThai(
+          color: Colors.red, fontWeight: FontWeight.bold),
+      middleText: 'คุณต้องการออกจากระบบใช่หรือไม่',
+      middleTextStyle: GoogleFonts.notoSansThai(),
+      contentPadding: const EdgeInsets.all(10),
+      confirm: TextButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
+          ),
+        ),
+        onPressed: () => Get.back(result: true),
+        child: Text('ใช่',
+            style: GoogleFonts.notoSansThai(
+                color: Colors.blueAccent, fontWeight: FontWeight.bold)),
+      ),
+      cancel: TextButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
+          ),
+        ),
+        onPressed: () => Get.back(result: false),
+        child: Text('ไม่ใช่',
+            style: GoogleFonts.notoSansThai(
+                color: Colors.red, fontWeight: FontWeight.bold)),
+      ),
+      onConfirm: () => true,
+      onCancel: () => false,
+    );
 
-    Get.offAll(LoginPage());
+    if (confirm) {
+      // clear data from shared preferences
+      final prefs = await SharedPreferences.getInstance();
+      prefs.remove('id');
+      prefs.remove('password');
+      prefs.remove('name');
+      prefs.remove('image');
+      // update data to userlogic
+      this.id.value = '';
+      this.password.value = '';
+      this.name.value = '';
+      this.image.value = '';
+      Get.offAll(LoginPage());
+    }
   }
 }
 
 class EmployeeModel {
-  EmployeeModel({id, password, name, image});
+  EmployeeModel({id, password, name, image}) {
+    this.id = id;
+    this.password = password;
+    this.name = name;
+    this.image = image ?? '';
+  }
 
   final userlogic = Userlogic();
 

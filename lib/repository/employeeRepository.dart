@@ -1,3 +1,4 @@
+import '../getX/user/logic.dart';
 import './provider/employeeProvider.dart';
 
 class EmployeeRepository {
@@ -12,6 +13,14 @@ class EmployeeRepository {
   static Future FetchCurrentUserById(String id) async {
     try {
       return await employeeProvider.FetchCurrentUserById(id);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  static Future register(EmployeeModel employee) async {
+    try {
+      return await employeeProvider.register(employee);
     } catch (e) {
       rethrow;
     }

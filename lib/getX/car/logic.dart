@@ -9,12 +9,7 @@ class Carlogic extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-
-    isLoading.value = true;
-
     loadCarByDate(DateTime.now());
-
-    isLoading.value = false;
   }
 
   // load car by date

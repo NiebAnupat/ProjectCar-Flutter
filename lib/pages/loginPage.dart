@@ -167,10 +167,7 @@ class LoginPage extends StatelessWidget {
                                     fontSize: 15, color: Colors.grey)),
                             TextButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (ctx) => const RegistPage()));
+                                Get.offAll(RegistPage());
                               },
                               child: Text(
                                 "สมัคร",
