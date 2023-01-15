@@ -66,8 +66,7 @@ class HistoryBox extends StatelessWidget {
             topRight: Radius.circular(15),
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             SizedBox(
               height: 30,
@@ -89,6 +88,7 @@ class HistoryBox extends StatelessWidget {
                 margin: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.blue[100],
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
@@ -140,6 +140,9 @@ class HistoryBox extends StatelessWidget {
                         style: GoogleFonts.notoSansThai(fontSize: 16),
                       );
                     },
+                  ),
+                  SizedBox(
+                    height: 20.0,
                   ),
                 ],
               ),

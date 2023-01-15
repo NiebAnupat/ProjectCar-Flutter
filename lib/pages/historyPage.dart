@@ -34,6 +34,12 @@ class HistoryPage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Get.back();
+          },
+        ),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
