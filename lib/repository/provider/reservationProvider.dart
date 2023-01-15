@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../models/Reservation.dart';
 import 'googleSheetProvider.dart';
 
@@ -39,7 +42,14 @@ class reservationProvider {
   static Future<List<Reservation>?> fetchReservationByUserId(
       String userId) async {
     try {
-      // fetch data from google sheet
+      // loading dialog
+      Get.dialog(
+        const Center(
+          child: CircularProgressIndicator(),
+        ),
+        barrierDismissible: false,
+      );
+
       final reservationSheet = await googleSheetProvider.reservationSheet;
       var allRows = await reservationSheet.values.map.allRows();
       if (allRows == null) {
@@ -49,6 +59,7 @@ class reservationProvider {
           .map((e) => Reservation.fromJson(e))
           .where((e) => e.employeeId == userId)
           .toList();
+      Get.back();
       return reservations;
     } catch (e) {
       rethrow;

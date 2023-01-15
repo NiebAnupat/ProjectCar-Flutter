@@ -92,7 +92,7 @@ class ProfilePage extends StatelessWidget {
                     color: Color.fromARGB(255, 72, 167, 245),
                   ),
                   onTap: () {
-                    Get.to(() => HistoryPage());
+                    Get.offAll(HistoryPage());
                   },
                 ),
                 GFListTile(

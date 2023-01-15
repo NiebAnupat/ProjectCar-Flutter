@@ -69,10 +69,10 @@ class _HomePageState extends State<HomePage> {
                     );
                   } else {
                     return ListView.builder(
-                      itemCount: carLogic.cars.length,
+                      itemCount: carLogic.carsNotReserved.length,
                       itemBuilder: (context, index) {
                         return CarBox(
-                          car: carLogic.cars[index],
+                          car: carLogic.carsNotReserved[index],
                           date: date,
                         );
                       },

@@ -19,6 +19,7 @@ class employeeProvider {
       final employeeSheet = await googleSheetProvider.employeeSheet;
       var allRows = await employeeSheet.values.map.allRows();
       if (allRows == null) {
+        Get.back();
         return null;
       }
       var employee = allRows
@@ -27,6 +28,7 @@ class employeeProvider {
       Get.back();
       return employee;
     } catch (e) {
+      Get.back();
       rethrow;
     }
   }

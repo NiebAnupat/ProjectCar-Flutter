@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import '../getX/user/logic.dart';
 import './provider/employeeProvider.dart';
 
@@ -6,6 +8,7 @@ class EmployeeRepository {
     try {
       return await employeeProvider.login(id, password);
     } catch (e, s) {
+      Get.back();
       rethrow;
     }
   }

@@ -21,6 +21,7 @@ class carProvider {
         return null;
       }
       var cars = allRows.map((e) => Car.fromJson(e)).toList();
+      print(cars.runtimeType);
       return cars;
     } catch (e) {
       rethrow;

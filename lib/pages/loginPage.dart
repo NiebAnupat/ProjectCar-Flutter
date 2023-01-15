@@ -29,7 +29,8 @@ class LoginPage extends StatelessWidget {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red,
             colorText: Colors.white,
-            margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10));
+            margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
+            duration: const Duration(seconds: 1));
       }
     }
 

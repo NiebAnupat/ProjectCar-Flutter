@@ -3,12 +3,14 @@ import '../../models/Car.dart';
 import 'package:reserv_car_app/repository/carRepository.dart';
 
 class Carlogic extends GetxController {
-  RxList<Car> cars = <Car>[].obs;
+  static RxList<Car> cars = <Car>[].obs;
+  RxList<Car> carsNotReserved = <Car>[].obs;
   var isLoading = false.obs;
 
   @override
   Future<void> onInit() async {
     super.onInit();
+    cars.value = await carRepository.fetchCar() ?? <Car>[];
     loadCarByDate(DateTime.now());
   }
 
@@ -16,7 +18,13 @@ class Carlogic extends GetxController {
   Future<void> loadCarByDate(DateTime date) async {
     isLoading.value = true;
     // fetch car from carRepository
-    cars.value = await carRepository.getCarNotReservedByDate(date) ?? <Car>[];
+    carsNotReserved.value =
+        await carRepository.getCarNotReservedByDate(date) ?? <Car>[];
     isLoading.value = false;
+  }
+
+  // fetch cars
+  static Future<void> fetchCars() async {
+    cars.value = await carRepository.fetchCar() ?? <Car>[];
   }
 }

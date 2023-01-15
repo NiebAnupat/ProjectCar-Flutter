@@ -155,7 +155,7 @@ class RegistPage extends StatelessWidget {
                           children: [
                             GFIconButton(
                               onPressed: () {
-                                Get.back();
+                                Get.off(LoginPage());
                               },
                               icon: const Icon(
                                 Icons.arrow_back_ios,

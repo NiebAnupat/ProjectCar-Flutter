@@ -2,11 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/card/gf_card.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:reserv_car_app/models/Car.dart';
+import 'package:reserv_car_app/models/Reservation.dart';
+import 'package:reserv_car_app/repository/carRepository.dart';
 
+import '../getX/car/logic.dart';
+import '../getX/user/logic.dart';
 import '../models/Histories.dart';
 
 class HistoryBox extends StatelessWidget {
-  const HistoryBox({super.key});
+  final Reservation reservation;
+  final carLogic = Get.put(Carlogic());
+  final userLogic = Get.put(Userlogic());
+  var carName = '';
+  var carImage = '';
+
+  HistoryBox({required this.reservation}) {
+    var car = Carlogic.cars.firstWhere((car) => car.id == reservation.carId);
+    carName = car.name;
+    carImage = car.image;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +40,10 @@ class HistoryBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(1.5),
         child: ListTile(
-          title: Text("ชิ่อรถ", style: GoogleFonts.notoSansThai(fontSize: 18)),
-          subtitle:
-              Text("วันที่", style: GoogleFonts.notoSansThai(fontSize: 15)),
+          title: Text('ชื่อรถ : ${carName}',
+              style: GoogleFonts.notoSansThai(fontSize: 18)),
+          subtitle: Text('วันที่ : ${reservation.date}',
+              style: GoogleFonts.notoSansThai(fontSize: 15)),
 
           // Tap to view details
           onTap: () {
@@ -76,9 +92,14 @@ class HistoryBox extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image(
-                      image: NetworkImage(
-                          'https://cdn.pixabay.com/photo/2016/12/03/18/57/car-1880381_960_720.jpg')),
+                  child: Image.network(
+                    carImage,
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      return Image.network(
+                          'https://cdn.pixabay.com/photo/2016/12/03/18/57/car-1880381_960_720.jpg');
+                    },
+                  ),
                 ),
               ),
             ),
@@ -91,29 +112,34 @@ class HistoryBox extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'ทะเบียนรถ : ',
+                    'ทะเบียนรถ : ${reservation.carId}',
                     style: GoogleFonts.notoSansThai(fontSize: 16),
                   ),
                   SizedBox(
                     height: 8.0,
                   ),
                   Text(
-                    'ชื่อรถ     : ',
+                    'ชื่อรถ     : ${carName}',
                     style: GoogleFonts.notoSansThai(fontSize: 16),
                   ),
                   SizedBox(
                     height: 8.0,
                   ),
                   Text(
-                    'วันที่จอง : ',
+                    'วันที่จอง : ${reservation.date}',
                     style: GoogleFonts.notoSansThai(fontSize: 16),
                   ),
                   SizedBox(
                     height: 8.0,
                   ),
-                  Text(
-                    'ชื่อผู้จอง : ',
-                    style: GoogleFonts.notoSansThai(fontSize: 16),
+                  GetX<Userlogic>(
+                    init: Userlogic(),
+                    builder: (userLogic) {
+                      return Text(
+                        'ชื่อผู้จอง : ${userLogic.name.value}',
+                        style: GoogleFonts.notoSansThai(fontSize: 16),
+                      );
+                    },
                   ),
                 ],
               ),
