@@ -10,7 +10,6 @@ class Carlogic extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    cars.value = await carRepository.fetchCar() ?? <Car>[];
     loadCarByDate(DateTime.now());
   }
 

@@ -57,13 +57,13 @@ class Userlogic extends GetxController {
         this.password.value = user.password;
         this.name.value = user.name;
         this.image.value = user.image;
-        Get.back();
+
         Get.offAll(const BottomBar());
       }
     } catch (e) {
       rethrow;
     } finally {
-      this.isLoading.value = false;
+      Get.back();
     }
   }
 
