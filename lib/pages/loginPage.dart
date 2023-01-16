@@ -127,6 +127,7 @@ class LoginPage extends StatelessWidget {
                         // Password
                         TextField(
                           onSubmitted: (value) => loginUser(),
+                          obscureText: true,
                           controller: passwordController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(

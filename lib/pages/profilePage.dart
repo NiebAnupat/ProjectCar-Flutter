@@ -19,9 +19,9 @@ class ProfilePage extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.blue[100],
+              //image
               image: const DecorationImage(
-                image: NetworkImage(
-                    'https://cdn.pixabay.com/photo/2016/11/22/19/33/conifers-1850227_960_720.jpg'),
+                image: AssetImage('assets/images/profile_BG.jpg'),
                 fit: BoxFit.cover,
               ),
               borderRadius: const BorderRadius.only(
