@@ -45,8 +45,9 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () async {
                       DateTime? newDate = await showDatePicker(
                         context: context,
-                        initialDate: date,
-                        firstDate: DateTime(2015),
+                        initialDate: DateTime.now(),
+                        firstDate:
+                            DateTime.now().subtract(const Duration(days: 0)),
                         lastDate: DateTime(2025),
                       );
                       if (newDate != null) {

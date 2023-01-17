@@ -24,6 +24,29 @@ class CarBox extends StatelessWidget {
 
   submitReservation() async {
     try {
+      Get.back();
+      Get.defaultDialog(
+        contentPadding: const EdgeInsets.all(40),
+        title: 'กำลังจองรถ',
+        titleStyle: GoogleFonts.notoSansThai(
+          fontSize: 20,
+          color: Colors.black,
+        ),
+        middleText: 'กรุณารอสักครู่',
+        middleTextStyle: GoogleFonts.notoSansThai(
+          fontSize: 18,
+          color: Colors.black,
+        ),
+        barrierDismissible: false,
+        content: const Center(
+          child: GFLoader(
+            type: GFLoaderType.circle,
+            loaderColorOne: Colors.blue,
+            loaderColorTwo: Colors.blue,
+            loaderColorThree: Colors.blue,
+          ),
+        ),
+      );
       final dateFormatted = DateFormat('dd/MM/yyyy').format(date);
       final newReservation = Reservation(
           id: Reservation.makeReservationId(),
@@ -89,8 +112,6 @@ class CarBox extends StatelessWidget {
         child: ListTile(
           title: Text(car.name, style: GoogleFonts.notoSansThai(fontSize: 18)),
           subtitle: Text(car.id, style: GoogleFonts.notoSansThai(fontSize: 15)),
-
-          // Tap to input detail
           onTap: () {
             confirmDialog(context);
           },
@@ -114,17 +135,17 @@ class CarBox extends StatelessWidget {
                   'ทะเบียนรถ : ${car.id}',
                   style: GoogleFonts.notoSansThai(fontSize: 16),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   'ชื่อรถ     :  ${car.name}',
                   style: GoogleFonts.notoSansThai(fontSize: 16),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   'วันที่จอง :  ${formatter.format(date)}',
                   style: GoogleFonts.notoSansThai(fontSize: 16),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 GetX<Userlogic>(
                   builder: (userLogic) {
                     return Text(
@@ -139,11 +160,15 @@ class CarBox extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Get.back(),
-              child: Text("ยกเลิก"),
+              child: Text("ยกเลิก",
+                  style: GoogleFonts.notoSansThai(
+                      fontSize: 16, color: Colors.red)),
             ),
             TextButton(
               onPressed: submitReservation,
-              child: Text("ยืนยัน"),
+              child: Text("ยืนยัน",
+                  style: GoogleFonts.notoSansThai(
+                      fontSize: 16, color: Colors.green)),
             ),
           ],
         ),

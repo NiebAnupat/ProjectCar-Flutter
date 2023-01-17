@@ -15,10 +15,12 @@ import 'bottomBar.dart';
 
 class HistoryPage extends StatelessWidget {
   HistoryPage({super.key}) {
+    reservationLogic.isLoading.value = true;
     reservationRepository
         .fetchReservationByUserId(userLogic.id.value)
         .then((value) => {
               reservationLogic.reservations.value = value ?? <Reservation>[],
+              reservationLogic.isLoading.value = false,
             });
   }
 
@@ -52,21 +54,32 @@ class HistoryPage extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         child: GetX<ReservationLogic>(
           builder: (reservationLogic) {
-            if (reservationLogic.reservations.isEmpty) {
-              return Center(
-                child: Text(
-                  'ไม่มีประวัติการจอง',
-                  style: GoogleFonts.notoSansThai(fontSize: 20),
+            if (reservationLogic.isLoading.value) {
+              return const Center(
+                child: GFLoader(
+                  type: GFLoaderType.circle,
+                  loaderColorOne: Colors.blue,
+                  loaderColorTwo: Colors.blue,
+                  loaderColorThree: Colors.blue,
                 ),
               );
             } else {
-              return ListView.builder(
-                itemCount: reservationLogic.reservations.length,
-                itemBuilder: ((context, i) {
-                  return HistoryBox(
-                      reservation: reservationLogic.reservations[i]);
-                }),
-              );
+              if (reservationLogic.reservations.isEmpty) {
+                return Center(
+                  child: Text(
+                    'ไม่มีประวัติการจอง',
+                    style: GoogleFonts.notoSansThai(fontSize: 20),
+                  ),
+                );
+              } else {
+                return ListView.builder(
+                  itemCount: reservationLogic.reservations.length,
+                  itemBuilder: ((context, i) {
+                    return HistoryBox(
+                        reservation: reservationLogic.reservations[i]);
+                  }),
+                );
+              }
             }
           },
         ),
