@@ -5,40 +5,6 @@ import '../../models/Reservation.dart';
 import 'googleSheetProvider.dart';
 
 class reservationProvider {
-  static Future<List<Reservation>?> fetchReservation() async {
-    try {
-      // fetch data from google sheet
-      final reservationSheet = await googleSheetProvider.reservationSheet;
-      var allRows = await reservationSheet.values.map.allRows();
-      if (allRows == null) {
-        return null;
-      }
-      var reservations = allRows.map((e) => Reservation.fromJson(e)).toList();
-      return reservations;
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  static Future<List<Reservation>?> fetchReservationByCarId(
-      String carId) async {
-    try {
-      // fetch data from google sheet
-      final reservationSheet = await googleSheetProvider.reservationSheet;
-      var allRows = await reservationSheet.values.map.allRows();
-      if (allRows == null) {
-        return null;
-      }
-      var reservations = allRows
-          .map((e) => Reservation.fromJson(e))
-          .where((e) => e.carId == carId)
-          .toList();
-      return reservations;
-    } catch (e) {
-      rethrow;
-    }
-  }
-
   static Future<List<Reservation>?> fetchReservationByUserId(
       String userId) async {
     try {
@@ -59,6 +25,13 @@ class reservationProvider {
           .map((e) => Reservation.fromJson(e))
           .where((e) => e.employeeId == userId)
           .toList();
+
+      // oderby id
+      reservations.sort((a, b) => a.id.compareTo(b.id));
+
+      // reverse
+      reservations = reservations.reversed.toList();
+
       Get.back();
       return reservations;
     } catch (e) {

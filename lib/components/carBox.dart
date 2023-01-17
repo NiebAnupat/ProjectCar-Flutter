@@ -67,6 +67,7 @@ class CarBox extends StatelessWidget {
         backgroundColor: Colors.green,
         colorText: Colors.white,
         margin: const EdgeInsets.only(bottom: 70, left: 10, right: 10),
+        duration: const Duration(seconds: 2),
       );
 
       carLogic.loadCarByDate(date);
@@ -80,6 +81,7 @@ class CarBox extends StatelessWidget {
         backgroundColor: Colors.red,
         colorText: Colors.white,
         margin: const EdgeInsets.only(bottom: 70, left: 10, right: 10),
+        duration: const Duration(seconds: 2),
       );
     }
   }
