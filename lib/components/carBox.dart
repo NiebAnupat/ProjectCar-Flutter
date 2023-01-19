@@ -93,6 +93,7 @@ class CarBox extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
+        color: Colors.white,
         image: DecorationImage(
           image: NetworkImage(
             car.image,

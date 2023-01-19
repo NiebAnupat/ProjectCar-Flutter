@@ -69,15 +69,24 @@ class _HomePageState extends State<HomePage> {
                       child: CircularProgressIndicator(),
                     );
                   } else {
-                    return ListView.builder(
-                      itemCount: carLogic.carsNotReserved.length,
-                      itemBuilder: (context, index) {
-                        return CarBox(
-                          car: carLogic.carsNotReserved[index],
-                          date: date,
-                        );
-                      },
-                    );
+                    if (carLogic.carsNotReserved.isEmpty) {
+                      return Center(
+                        child: Text(
+                          'ไม่มีพบรถยนต์ที่ว่าง',
+                          style: GoogleFonts.notoSansThai(fontSize: 20),
+                        ),
+                      );
+                    } else {
+                      return ListView.builder(
+                        itemCount: carLogic.carsNotReserved.length,
+                        itemBuilder: (context, index) {
+                          return CarBox(
+                            car: carLogic.carsNotReserved[index],
+                            date: date,
+                          );
+                        },
+                      );
+                    }
                   }
                 },
               ),
