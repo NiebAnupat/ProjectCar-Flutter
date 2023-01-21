@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                     if (carLogic.carsNotReserved.isEmpty) {
                       return Center(
                         child: Text(
-                          'ไม่มีพบรถยนต์ที่ว่าง',
+                          'ไม่พบรถยนต์ที่ว่าง',
                           style: GoogleFonts.notoSansThai(fontSize: 20),
                         ),
                       );
